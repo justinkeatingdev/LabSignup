@@ -1,4 +1,9 @@
-﻿namespace LabSignup
+﻿using OfficeOpenXml;
+using System.Collections.Generic;
+using System.IO;
+using System.Windows.Forms;
+
+namespace LabSignup
 {
     partial class LabSignup
     {
@@ -73,10 +78,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "LAB1",
-            "LAB2",
-            "LAB3"});
+            //this.comboBox1.Items.AddRange(new object[] {"hello", "hello2"});
             this.comboBox1.Location = new System.Drawing.Point(34, 118);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(149, 21);
@@ -127,6 +129,7 @@
             this.Controls.Add(this.textBox1);
             this.Name = "LabSignup";
             this.Text = "Lab Signup";
+            this.Load += new System.EventHandler(this.LabSignup_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

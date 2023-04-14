@@ -1,13 +1,14 @@
 ﻿using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LabSignup
 {
-    static class Program
+    class Program
     {
         /// <summary>
         /// The main entry point for the application.
@@ -18,9 +19,16 @@ namespace LabSignup
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LabSignup());
-            // If you use EPPlus in a noncommercial context
-            // according to the Polyform Noncommercial license:
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
         }
+
+
+    }
+
+    public class LabInfo
+    {
+        public string LabName { get; set; }
+        public string LabDay { get; set; }
+        public string LabStart { get; set; }
+        public string LabEnd { get; set; }
     }
 }

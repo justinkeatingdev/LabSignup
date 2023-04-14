@@ -16,6 +16,7 @@ namespace LabSignup
     {
         public static List<string> labNames = new List<string>();
         public static List<LabInfo> allLabs = new List<LabInfo>();
+        public static List<StudentInfo> allStudents = new List<StudentInfo>();
 
         public LabSignup()
         {
@@ -46,14 +47,42 @@ namespace LabSignup
 
         private void button1_Click(object sender, EventArgs e)
         {
+            string labDay = "";
+            string labStart = "";
+            string labEnd = "";
+            var labData = allLabs.AsQueryable().Where(l => l.LabName == comboBox1.Text).FirstOrDefault();
+            if(labData != null)
+            {
+                labDay = labData.LabDay;
+                labStart = labData.LabStart;
+                labEnd = labData.LabStart;
+            }
+            var student = new StudentInfo { FirstName = this.textBox1.Text, LastName=this.textBox2.Text, LabName=this.comboBox1.Text, LabDay= labDay, LabStart= labStart, LabEnd = labEnd };
+            allStudents.Add(student);
 
-           
+            this.textBox1.Clear();
+            this.textBox2.Clear();
+            this.comboBox1.SelectedIndex = -1;
+
+            this.label4.Text = allStudents.Count.ToString();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
 
+            string newExcelFile = @"D:\StudentData.xlsx";
+            new LabSignup().Export(newExcelFile);
+        }
 
+        private void Export(string file)
+        {
+            ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+
+            using (ExcelPackage pck = new ExcelPackage())
+            {
+                pck.Workbook.Worksheets.Add("Students").Cells[1, 1].LoadFromCollection(allStudents, true);
+                pck.SaveAs(new FileInfo(file));
+            }
         }
 
         private List<T> GetList<T>(ExcelWorksheet sheet)

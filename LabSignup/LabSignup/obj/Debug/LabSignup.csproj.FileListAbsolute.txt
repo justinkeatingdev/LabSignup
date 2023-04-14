@@ -1,0 +1,10 @@
+C:\MyProjects\LabSignup\LabSignup\LabSignup\bin\Debug\LabSignup.exe.config
+C:\MyProjects\LabSignup\LabSignup\LabSignup\bin\Debug\LabSignup.exe
+C:\MyProjects\LabSignup\LabSignup\LabSignup\bin\Debug\LabSignup.pdb
+C:\MyProjects\LabSignup\LabSignup\LabSignup\obj\Debug\LabSignup.csprojAssemblyReference.cache
+C:\MyProjects\LabSignup\LabSignup\LabSignup\obj\Debug\LabSignup.Properties.Resources.resources
+C:\MyProjects\LabSignup\LabSignup\LabSignup\obj\Debug\LabSignup.csproj.GenerateResource.cache
+C:\MyProjects\LabSignup\LabSignup\LabSignup\obj\Debug\LabSignup.csproj.CoreCompileInputs.cache
+C:\MyProjects\LabSignup\LabSignup\LabSignup\obj\Debug\LabSignup.exe
+C:\MyProjects\LabSignup\LabSignup\LabSignup\obj\Debug\LabSignup.pdb
+C:\MyProjects\LabSignup\LabSignup\LabSignup\obj\Debug\LabSignup.LabSignup.resources

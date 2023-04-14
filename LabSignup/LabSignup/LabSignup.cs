@@ -40,6 +40,7 @@ namespace LabSignup
                 {
                     this.comboBox1.Items.Add(lab.LabName);
                 }
+                this.comboBox1.SelectedIndex = -0;
 
             }
 
@@ -62,7 +63,7 @@ namespace LabSignup
 
             this.textBox1.Clear();
             this.textBox2.Clear();
-            this.comboBox1.SelectedIndex = -1;
+            this.comboBox1.SelectedIndex = -0;
 
             this.label4.Text = allStudents.Count.ToString();
         }

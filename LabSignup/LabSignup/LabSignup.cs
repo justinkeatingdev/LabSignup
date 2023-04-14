@@ -17,6 +17,7 @@ namespace LabSignup
         public static List<string> labNames = new List<string>();
         public static List<LabInfo> allLabs = new List<LabInfo>();
         public static List<StudentInfo> allStudents = new List<StudentInfo>();
+        public static string execPath = Path.GetDirectoryName(Application.ExecutablePath);
 
         public LabSignup()
         {
@@ -26,8 +27,8 @@ namespace LabSignup
 
         private void LabSignup_Load(object sender, EventArgs e)
         {
-
-            string file = @"D:\LabData.xlsx";
+            
+            string file = execPath + "/LabData.xlsx";
 
             using (ExcelPackage package = new ExcelPackage(new FileInfo(file)))
             {
@@ -71,7 +72,7 @@ namespace LabSignup
         private void button2_Click(object sender, EventArgs e)
         {
 
-            string newExcelFile = @"D:\StudentData.xlsx";
+            string newExcelFile = execPath + "/StudentData.xlsx";
             new LabSignup().Export(newExcelFile);
         }
 

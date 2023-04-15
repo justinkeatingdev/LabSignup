@@ -57,7 +57,7 @@ namespace LabSignup
             {
                 labDay = labData.LabDay;
                 labStart = labData.LabStart;
-                labEnd = labData.LabStart;
+                labEnd = labData.LabEnd;
             }
             var student = new StudentInfo { FirstName = this.textBox1.Text, LastName=this.textBox2.Text, LabName=this.comboBox1.Text, LabDay= labDay.Replace("12:00:00 AM", ""), LabStart= labStart, LabEnd = labEnd };
             allStudents.Add(student);

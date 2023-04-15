@@ -59,7 +59,7 @@ namespace LabSignup
                 labStart = labData.LabStart;
                 labEnd = labData.LabStart;
             }
-            var student = new StudentInfo { FirstName = this.textBox1.Text, LastName=this.textBox2.Text, LabName=this.comboBox1.Text, LabDay= labDay, LabStart= labStart, LabEnd = labEnd };
+            var student = new StudentInfo { FirstName = this.textBox1.Text, LastName=this.textBox2.Text, LabName=this.comboBox1.Text, LabDay= labDay.Replace("12:00:00 AM", ""), LabStart= labStart, LabEnd = labEnd };
             allStudents.Add(student);
 
             this.textBox1.Clear();
@@ -72,7 +72,8 @@ namespace LabSignup
         private void button2_Click(object sender, EventArgs e)
         {
 
-            string newExcelFile = execPath + "/StudentData.xlsx";
+            string newExcelFile = execPath + $"/Student-Lab-SignUp-Sheet-{DateTime.Now.Month + "-" +  DateTime.Now.Day + "-" + DateTime.Now.Year}.xlsx";
+            newExcelFile = newExcelFile.Replace(" ", "-");
             new LabSignup().Export(newExcelFile);
         }
 

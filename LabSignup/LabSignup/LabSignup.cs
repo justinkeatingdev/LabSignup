@@ -97,7 +97,7 @@ namespace LabSignup
         private void button2_Click(object sender, EventArgs e)
         {
 
-            string newExcelFile = execPath + $"/ExcelFiles/Student-Lab-SignUp-Sheet-{DateTime.Now.Month + "-" +  DateTime.Now.Day + "-" + DateTime.Now.Year}.xlsx";
+            string newExcelFile = execPath + $"/ExcelFiles/LabsData-{DateTime.Now.Month + "-" +  DateTime.Now.Day + "-" + DateTime.Now.Year}.xlsx";
             newExcelFile = newExcelFile.Replace(" ", "-");
             new LabSignup().Export(newExcelFile);
         }
@@ -108,7 +108,7 @@ namespace LabSignup
 
             using (ExcelPackage pck = new ExcelPackage())
             {
-                pck.Workbook.Worksheets.Add("Students").Cells[1, 1].LoadFromCollection(allStudents, true);
+                pck.Workbook.Worksheets.Add("LabsData").Cells[1, 1].LoadFromCollection(allStudents, true);
                 pck.SaveAs(new FileInfo(file));
             }
         }

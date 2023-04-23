@@ -32,13 +32,20 @@ namespace LabSignup
         public string LabEnd { get; set; }
     }
 
-    public class StudentInfo
+    public class SigneeTitles
+    {
+        public string Title { get; set; }
+    }
+
+    public class SigneeInfo
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Title { get; set; }
         public string LabName { get; set; }
         public string LabDay { get; set; }
         public string LabStart { get; set; }
         public string LabEnd { get; set; }
+        public string LabSignInTime { get; set; }
     }
 }

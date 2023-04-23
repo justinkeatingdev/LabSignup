@@ -16,8 +16,11 @@ namespace LabSignup
     {
         public static List<string> labNames = new List<string>();
         public static List<LabInfo> allLabs = new List<LabInfo>();
-        public static List<StudentInfo> allStudents = new List<StudentInfo>();
+        public static List<SigneeTitles> allTitles = new List<SigneeTitles>();
+        public static List<SigneeInfo> allStudents = new List<SigneeInfo>();
+        public static List<SigneeInfo> currentSignee = new List<SigneeInfo>();
         public static string execPath = Path.GetDirectoryName(Application.ExecutablePath);
+        public static string signeeList = execPath + $"/ExcelFiles/SignInSheet.xlsx";
 
         public LabSignup()
         {
@@ -28,7 +31,7 @@ namespace LabSignup
         private void LabSignup_Load(object sender, EventArgs e)
         {
             
-            string file = execPath + "/LabData.xlsx";
+            string file = execPath + "/ExcelFiles/LabDetails.xlsx";
 
             using (ExcelPackage package = new ExcelPackage(new FileInfo(file)))
             {
@@ -39,9 +42,27 @@ namespace LabSignup
 
                 foreach (var lab in allLabs)
                 {
-                    this.comboBox1.Items.Add(lab.LabName);
+                    string labDay = lab.LabDay.Replace("12:00:00 AM", "");
+                    this.comboBox1.Items.Add($"{labDay}- {lab.LabName}");
                 }
                 this.comboBox1.SelectedIndex = -0;
+
+            }
+
+            string signeeTitles = execPath + "/ExcelFiles/Titles.xlsx";
+
+            using (ExcelPackage package = new ExcelPackage(new FileInfo(signeeTitles)))
+            {
+                ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+                var sheet = package.Workbook.Worksheets["Sheet1"];
+                var titles = new LabSignup().GetList<SigneeTitles>(sheet);
+                allTitles = titles;
+
+                foreach (var title in allTitles.OrderBy(x=> x.Title))
+                {
+                    this.comboBox2.Items.Add($"{title.Title}");
+                }
+                this.comboBox2.SelectedIndex = -0;
 
             }
 
@@ -52,27 +73,31 @@ namespace LabSignup
             string labDay = "";
             string labStart = "";
             string labEnd = "";
-            var labData = allLabs.AsQueryable().Where(l => l.LabName == comboBox1.Text).FirstOrDefault();
+
+            var labData = allLabs.AsQueryable().Where(l => l.LabName.ToLower().Contains(comboBox1.Text.Split('-').LastOrDefault().Trim().ToLower())).FirstOrDefault();
             if(labData != null)
             {
                 labDay = labData.LabDay;
                 labStart = labData.LabStart;
                 labEnd = labData.LabEnd;
             }
-            var student = new StudentInfo { FirstName = this.textBox1.Text, LastName=this.textBox2.Text, LabName=this.comboBox1.Text, LabDay= labDay.Replace("12:00:00 AM", ""), LabStart= labStart, LabEnd = labEnd };
-            allStudents.Add(student);
+            var signee = new SigneeInfo
+            { FirstName = this.textBox1.Text, LastName=this.textBox2.Text, Title=this.comboBox2.Text, LabName=this.comboBox1.Text, LabDay= labDay.Replace("12:00:00 AM", ""), LabStart= labStart, LabEnd = labEnd, LabSignInTime = DateTime.Now.ToString() };
+            currentSignee.Add(signee);
+
+            InsertSigneeIntoSheet();
 
             this.textBox1.Clear();
             this.textBox2.Clear();
             this.comboBox1.SelectedIndex = -0;
+            this.comboBox2.SelectedIndex = -0;
 
-            this.label4.Text = allStudents.Count.ToString();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
 
-            string newExcelFile = execPath + $"/Student-Lab-SignUp-Sheet-{DateTime.Now.Month + "-" +  DateTime.Now.Day + "-" + DateTime.Now.Year}.xlsx";
+            string newExcelFile = execPath + $"/ExcelFiles/Student-Lab-SignUp-Sheet-{DateTime.Now.Month + "-" +  DateTime.Now.Day + "-" + DateTime.Now.Year}.xlsx";
             newExcelFile = newExcelFile.Replace(" ", "-");
             new LabSignup().Export(newExcelFile);
         }
@@ -85,6 +110,24 @@ namespace LabSignup
             {
                 pck.Workbook.Worksheets.Add("Students").Cells[1, 1].LoadFromCollection(allStudents, true);
                 pck.SaveAs(new FileInfo(file));
+            }
+        }
+
+        private void InsertSigneeIntoSheet()
+        {
+            using (ExcelPackage package = new ExcelPackage(new FileInfo(signeeList)))
+            {
+                ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+                var sheet = package.Workbook.Worksheets["Sheet1"];
+
+                var lastRow = sheet.Dimension.End.Row;
+
+                sheet.Cells[lastRow+1, 1].LoadFromCollection(currentSignee, false);
+
+                package.Save();
+
+                currentSignee.Clear();
+
             }
         }
 

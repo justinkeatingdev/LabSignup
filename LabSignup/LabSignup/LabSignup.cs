@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace LabSignup
 {
@@ -17,10 +18,12 @@ namespace LabSignup
         public static List<string> labNames = new List<string>();
         public static List<LabInfo> allLabs = new List<LabInfo>();
         public static List<SigneeTitles> allTitles = new List<SigneeTitles>();
-        public static List<SigneeInfo> allStudents = new List<SigneeInfo>();
+        public static List<string> allTitlesStrings = new List<string>();
+        public static List<SigneeInfo> allSignee = new List<SigneeInfo>();
         public static List<SigneeInfo> currentSignee = new List<SigneeInfo>();
         public static string execPath = Path.GetDirectoryName(Application.ExecutablePath);
         public static string signeeList = execPath + $"/ExcelFiles/SignInSheet.xlsx";
+
 
         public LabSignup()
         {
@@ -44,6 +47,7 @@ namespace LabSignup
                 {
                     string labDay = lab.LabDay.Replace("12:00:00 AM", "");
                     this.comboBox1.Items.Add($"{labDay}- {lab.LabName}");
+                    labNames.Add($"{labDay}- {lab.LabName}");
                 }
                 this.comboBox1.SelectedIndex = -0;
 
@@ -61,8 +65,18 @@ namespace LabSignup
                 foreach (var title in allTitles.OrderBy(x=> x.Title))
                 {
                     this.comboBox2.Items.Add($"{title.Title}");
+                    allTitlesStrings.Add(title.Title);
                 }
                 this.comboBox2.SelectedIndex = -0;
+
+            }
+
+            using (ExcelPackage npackage = new ExcelPackage(new FileInfo(signeeList)))
+            {
+                ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+                var nsheet = npackage.Workbook.Worksheets["Sheet1"];
+                var signees = new LabSignup().GetList<SigneeInfo>(nsheet);
+                allSignee = signees;
 
             }
 
@@ -82,7 +96,7 @@ namespace LabSignup
                 labEnd = labData.LabEnd;
             }
             var signee = new SigneeInfo
-            { FirstName = this.textBox1.Text, LastName=this.textBox2.Text, Title=this.comboBox2.Text, LabName=this.comboBox1.Text, LabDay= labDay.Replace("12:00:00 AM", ""), LabStart= labStart, LabEnd = labEnd, LabSignInTime = DateTime.Now.ToString() };
+            { FirstName = this.textBox1.Text, LastName=this.textBox2.Text, Title=this.comboBox2.Text, LabName=this.comboBox1.Text, LabDay= labDay.Replace("12:00:00 AM", ""), LabStart= labStart, LabEnd = labEnd, LabSignInTime = DateTime.Now.ToString(), LabHours = (DateTime.Parse(labEnd) - DateTime.Parse(labStart)).ToString() };
             currentSignee.Add(signee);
 
             InsertSigneeIntoSheet();
@@ -104,11 +118,76 @@ namespace LabSignup
 
         private void Export(string file)
         {
+
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+            var titlesString = string.Join(",", allTitlesStrings);
 
             using (ExcelPackage pck = new ExcelPackage())
             {
-                pck.Workbook.Worksheets.Add("LabsData").Cells[1, 1].LoadFromCollection(allStudents, true);
+                var sheet = pck.Workbook.Worksheets.Add("LabsData");
+
+                sheet.Cells[1, 1].LoadFromText($"Course Name,{titlesString},Total Learners");
+
+                int rowStart = sheet.Dimension.Start.Row;
+                int rowEnd = sheet.Dimension.End.Row;
+                int tLearnerHoursColumn = -1;
+                string tLearnerHoursColumnAddress = "";
+                string firstTitleAddress = "";
+
+                string cellRange = rowStart.ToString() + ":" + rowEnd.ToString();
+
+                for (int i = 0; i < labNames.Count(); i++)
+                {
+                    sheet.Cells[i+2, 1].LoadFromText($"{labNames[i]}");
+                }
+
+                foreach(var s in allSignee)
+                {
+                    int cellRow = -1;
+                    int cellColumn = -1;
+
+                    foreach (var worksheetCell in sheet.Cells)
+                    {
+                        if (worksheetCell.Value.ToString() == s.LabName)
+                        {
+                            cellRow = worksheetCell.EntireRow.StartRow;
+                        }
+                        if (worksheetCell.Value.ToString() == s.Title)
+                        {
+                            cellColumn = worksheetCell.EntireColumn.StartColumn;
+                        }
+                    }
+
+                    if(cellRow != -1 && cellColumn != -1)
+                    {
+                        var cellValue = string.IsNullOrEmpty(sheet.Cells[cellRow, cellColumn].Text) ? 0 : int.Parse(sheet.Cells[cellRow, cellColumn].Text.ToString());
+                        cellValue += 1;
+
+                        sheet.Cells[cellRow, cellColumn].LoadFromText($"{cellValue}");
+                    }
+                    
+                }
+
+                foreach (var worksheetCell in sheet.Cells)
+                {
+                    if (worksheetCell.Value.ToString() == "Total Learners")
+                    {
+                        tLearnerHoursColumn = worksheetCell.EntireColumn.StartColumn;
+                        tLearnerHoursColumnAddress = ExcelCellAddress.GetColumnLetter(tLearnerHoursColumn - 1);
+                    }
+
+                    if (worksheetCell.Value.ToString() == allTitlesStrings.First().ToString())
+                    {
+                        var firstTitleColumn = worksheetCell.EntireColumn.StartColumn;
+                        firstTitleAddress = ExcelCellAddress.GetColumnLetter(firstTitleColumn);
+                    }
+                }
+
+                for (int i = 0; i < labNames.Count(); i++)
+                {
+                    sheet.Cells[i+2, tLearnerHoursColumn].Formula = $"=SUM({firstTitleAddress}{i+2}:{tLearnerHoursColumnAddress}{i+2})";
+                }
+
                 pck.SaveAs(new FileInfo(file));
             }
         }
@@ -126,8 +205,14 @@ namespace LabSignup
 
                 package.Save();
 
-                currentSignee.Clear();
+                using (ExcelPackage npackage = new ExcelPackage(new FileInfo(signeeList)))
+                {
+                    ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+                    var nsheet = npackage.Workbook.Worksheets["Sheet1"];
+                    var signees = new LabSignup().GetList<SigneeInfo>(nsheet);
+                    allSignee = signees;
 
+                }
             }
         }
 

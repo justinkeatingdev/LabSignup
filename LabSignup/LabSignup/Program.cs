@@ -1,4 +1,6 @@
 ﻿using OfficeOpenXml;
+using OfficeOpenXml.Attributes;
+using OfficeOpenXml.Table;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -47,5 +49,8 @@ namespace LabSignup
         public string LabStart { get; set; }
         public string LabEnd { get; set; }
         public string LabSignInTime { get; set; }
+        public string LabHours { get; set; }
     }
+
+
 }

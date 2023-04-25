@@ -205,6 +205,8 @@ namespace LabSignup
 
                 package.Save();
 
+                currentSignee.Clear();
+
                 using (ExcelPackage npackage = new ExcelPackage(new FileInfo(signeeList)))
                 {
                     ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;

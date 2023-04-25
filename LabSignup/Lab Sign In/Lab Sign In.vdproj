@@ -514,7 +514,7 @@
         {
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_111635BC255B4535A51D124D1EFFF276"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:[PersonalFolder]\\LabSignIn"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -573,15 +573,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Lab Sign In"
-        "ProductCode" = "8:{230357A4-56D1-40D6-9364-1958A5365428}"
-        "PackageCode" = "8:{03F8ADE9-4EFA-489A-B2AE-B723062AC30F}"
+        "ProductCode" = "8:{B0C47F3D-0422-41BC-B114-00D4D994AF32}"
+        "PackageCode" = "8:{453159FF-17E2-43F7-B473-EA62AF4A0C40}"
         "UpgradeCode" = "8:{60EBD9AF-0ACB-4E8B-B970-F5407B83A4BC}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.0.5"
         "Manufacturer" = "8:Justin Keating"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

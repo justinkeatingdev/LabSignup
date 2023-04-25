@@ -49,7 +49,7 @@ namespace LabSignup
                     this.comboBox1.Items.Add($"{labDay}- {lab.LabName}");
                     labNames.Add($"{labDay}- {lab.LabName}");
                 }
-                this.comboBox1.SelectedIndex = -0;
+                this.comboBox1.Text = "Select a Lab";
 
             }
 
@@ -67,7 +67,7 @@ namespace LabSignup
                     this.comboBox2.Items.Add($"{title.Title}");
                     allTitlesStrings.Add(title.Title);
                 }
-                this.comboBox2.SelectedIndex = -0;
+                this.comboBox2.Text = "Select Your Title";
 
             }
 
@@ -103,8 +103,8 @@ namespace LabSignup
 
             this.textBox1.Clear();
             this.textBox2.Clear();
-            this.comboBox1.SelectedIndex = -0;
-            this.comboBox2.SelectedIndex = -0;
+            this.comboBox1.Text = "Select a Lab";
+            this.comboBox2.Text = "Select Your Title";
 
         }
 

@@ -39,6 +39,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_882601E60D8D4EF688A1634BD34921DE"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_8E3C12A075CC714C0A24001B76660DC1"
         "OwnerKey" = "8:_0CA944F06CEEBAFECF402D0CFBA21AF0"
         "MsmSig" = "8:_UNDEFINED"
@@ -47,12 +53,6 @@
         {
         "MsmKey" = "8:_8E3C12A075CC714C0A24001B76660DC1"
         "OwnerKey" = "8:_552D5BB58B244286A7F0CDE347AD9D50"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_9C8F5D4980474B25A86A9B3EA226F655"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -311,6 +311,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_882601E60D8D4EF688A1634BD34921DE"
+            {
+            "SourcePath" = "8:C:\\Users\\Justin\\Downloads\\syringe.ico"
+            "TargetName" = "8:syringe.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_111635BC255B4535A51D124D1EFFF276"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8E3C12A075CC714C0A24001B76660DC1"
             {
             "AssemblyRegister" = "3:1"
@@ -340,26 +360,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9C8F5D4980474B25A86A9B3EA226F655"
-            {
-            "SourcePath" = "8:C:\\Users\\Justin\\Downloads\\nurse.ico"
-            "TargetName" = "8:nurse.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_111635BC255B4535A51D124D1EFFF276"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9F3E4FA8CD36E40502F9FFDBB7BFB9E1"
@@ -573,15 +573,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Lab Sign In"
-        "ProductCode" = "8:{B0C47F3D-0422-41BC-B114-00D4D994AF32}"
-        "PackageCode" = "8:{453159FF-17E2-43F7-B473-EA62AF4A0C40}"
+        "ProductCode" = "8:{9D66C270-BD80-4366-890D-6B2C73BDEC1D}"
+        "PackageCode" = "8:{9DAFBA2D-20A2-47F0-B03C-70EE1F954DC8}"
         "UpgradeCode" = "8:{60EBD9AF-0ACB-4E8B-B970-F5407B83A4BC}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.5"
+        "ProductVersion" = "8:1.0.11"
         "Manufacturer" = "8:Justin Keating"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -705,7 +705,7 @@
             "Target" = "8:_552D5BB58B244286A7F0CDE347AD9D50"
             "Folder" = "8:_E14B50C051B0486D9975F55F3641A938"
             "WorkingFolder" = "8:_111635BC255B4535A51D124D1EFFF276"
-            "Icon" = "8:_9C8F5D4980474B25A86A9B3EA226F655"
+            "Icon" = "8:_882601E60D8D4EF688A1634BD34921DE"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_81869465BD0B4F1ABB1716EEC24E46C0"
@@ -719,7 +719,7 @@
             "Target" = "8:_552D5BB58B244286A7F0CDE347AD9D50"
             "Folder" = "8:_234DC6703B88479B85E12C361C5B8F61"
             "WorkingFolder" = "8:_111635BC255B4535A51D124D1EFFF276"
-            "Icon" = "8:_9C8F5D4980474B25A86A9B3EA226F655"
+            "Icon" = "8:_882601E60D8D4EF688A1634BD34921DE"
             "Feature" = "8:"
             }
         }

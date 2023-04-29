@@ -33,6 +33,8 @@ namespace LabSignup
 
         private void LabSignup_Load(object sender, EventArgs e)
         {
+
+            this.panel1.Visible = false;
             
             string file = execPath + "/ExcelFiles/LabDetails.xlsx";
 
@@ -84,22 +86,26 @@ namespace LabSignup
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string labDay = "";
-            string labStart = "";
-            string labEnd = "";
-
-            var labData = allLabs.AsQueryable().Where(l => l.LabName.ToLower().Contains(comboBox1.Text.Split('-').LastOrDefault().Trim().ToLower())).FirstOrDefault();
-            if(labData != null)
+            if (!string.IsNullOrEmpty(this.textBox1.Text))
             {
-                labDay = labData.LabDay;
-                labStart = labData.LabStart;
-                labEnd = labData.LabEnd;
-            }
-            var signee = new SigneeInfo
-            { FirstName = this.textBox1.Text, LastName=this.textBox2.Text, Title=this.comboBox2.Text, LabName=this.comboBox1.Text, LabDay= labDay.Replace("12:00:00 AM", ""), LabStart= labStart, LabEnd = labEnd, LabSignInTime = DateTime.Now.ToString(), LabHours = (DateTime.Parse(labEnd) - DateTime.Parse(labStart)).ToString() };
-            currentSignee.Add(signee);
 
-            InsertSigneeIntoSheet();
+                string labDay = "";
+                string labStart = "";
+                string labEnd = "";
+
+                var labData = allLabs.AsQueryable().Where(l => l.LabName.ToLower().Contains(comboBox1.Text.Split('-').LastOrDefault().Trim().ToLower())).FirstOrDefault();
+                if (labData != null)
+                {
+                    labDay = labData.LabDay;
+                    labStart = labData.LabStart;
+                    labEnd = labData.LabEnd;
+                }
+                var signee = new SigneeInfo
+                { FirstName = this.textBox1.Text, LastName = this.textBox2.Text, Title = this.comboBox2.Text, LabName = this.comboBox1.Text, LabDay = labDay.Replace("12:00:00 AM", ""), LabStart = labStart, LabEnd = labEnd, LabSignInTime = DateTime.Now.ToString(), LabHours = (DateTime.Parse(labEnd) - DateTime.Parse(labStart)).ToString() };
+                currentSignee.Add(signee);
+
+                InsertSigneeIntoSheet();
+            }
 
             this.textBox1.Clear();
             this.textBox2.Clear();
@@ -126,10 +132,13 @@ namespace LabSignup
             {
                 var sheet = pck.Workbook.Worksheets.Add("LabsData");
 
-                sheet.Cells[1, 1].LoadFromText($"Course Name,{titlesString},Total Learners");
+                sheet.Cells[1, 1].LoadFromText($"Course Name,{titlesString},Total Learners,Total Learners Hours,Total Facilitators,Total Facilitators Hours");
 
                 int rowStart = sheet.Dimension.Start.Row;
                 int rowEnd = sheet.Dimension.End.Row;
+                int tLearnersColumn = -1;
+                string tLearnersColumnAddress = "";
+                string tLearnersRowAddress = "";
                 int tLearnerHoursColumn = -1;
                 string tLearnerHoursColumnAddress = "";
                 string firstTitleAddress = "";
@@ -172,8 +181,9 @@ namespace LabSignup
                 {
                     if (worksheetCell.Value.ToString() == "Total Learners")
                     {
-                        tLearnerHoursColumn = worksheetCell.EntireColumn.StartColumn;
-                        tLearnerHoursColumnAddress = ExcelCellAddress.GetColumnLetter(tLearnerHoursColumn - 1);
+                        tLearnersColumn = worksheetCell.EntireColumn.StartColumn;
+                        tLearnersColumnAddress = ExcelCellAddress.GetColumnLetter(tLearnersColumn);
+                        tLearnersRowAddress = ExcelCellAddress.GetColumnLetter(tLearnersColumn - 1);
                     }
 
                     if (worksheetCell.Value.ToString() == allTitlesStrings.First().ToString())
@@ -181,11 +191,21 @@ namespace LabSignup
                         var firstTitleColumn = worksheetCell.EntireColumn.StartColumn;
                         firstTitleAddress = ExcelCellAddress.GetColumnLetter(firstTitleColumn);
                     }
+
+                    if (worksheetCell.Value.ToString() == "Total Learners Hours")
+                    {
+                        tLearnerHoursColumn = worksheetCell.EntireColumn.StartColumn;
+                        tLearnerHoursColumnAddress = ExcelCellAddress.GetColumnLetter(tLearnerHoursColumn);
+                    }
                 }
 
                 for (int i = 0; i < labNames.Count(); i++)
                 {
-                    sheet.Cells[i+2, tLearnerHoursColumn].Formula = $"=SUM({firstTitleAddress}{i+2}:{tLearnerHoursColumnAddress}{i+2})";
+                    var labHours = DateTime.Parse(allLabs[i].LabEnd) - DateTime.Parse(allLabs[i].LabStart);
+                    var totalLabMinutes = labHours.TotalMinutes;
+
+                    sheet.Cells[i+2, tLearnersColumn].Formula = $"=SUM({firstTitleAddress}{i+2}:{tLearnersRowAddress}{i+2})";
+                    sheet.Cells[i+2, tLearnerHoursColumn].Formula = $"={tLearnersColumnAddress}{i + 2}*{totalLabMinutes}/60";
                 }
 
                 pck.SaveAs(new FileInfo(file));
@@ -240,6 +260,18 @@ namespace LabSignup
             }
 
             return list;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.panel1.Visible = true;
+            this.panel2.Visible = false;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.panel2.Visible = true;
+            this.panel1.Visible = false;
         }
     }
 }

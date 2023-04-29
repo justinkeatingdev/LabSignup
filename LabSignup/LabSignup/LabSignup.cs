@@ -50,8 +50,10 @@ namespace LabSignup
                     string labDay = lab.LabDay.Replace("12:00:00 AM", "");
                     this.comboBox1.Items.Add($"{labDay}- {lab.LabName}");
                     labNames.Add($"{labDay}- {lab.LabName}");
+                    this.comboBox4.Items.Add($"{labDay}- {lab.LabName}");
                 }
                 this.comboBox1.Text = "Select a Lab";
+                this.comboBox4.Text = "Select a Lab";
 
             }
 
@@ -68,8 +70,10 @@ namespace LabSignup
                 {
                     this.comboBox2.Items.Add($"{title.Title}");
                     allTitlesStrings.Add(title.Title);
+                    this.Title.Items.Add($"{title.Title}");
                 }
                 this.comboBox2.Text = "Select Your Title";
+
 
             }
 
@@ -273,5 +277,6 @@ namespace LabSignup
             this.panel2.Visible = true;
             this.panel1.Visible = false;
         }
+
     }
 }

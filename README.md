@@ -7,7 +7,7 @@ IF YOU HAVE PREVIOUSLY HAD THIS APP YOU NEED TO REMOVE IT FROM YOUR COMPUTER FIR
 2. Go to Uninstall Programs
 3. Right click on "Lab Sign In" and uninstall
 
-
+------
 
 1. Download the zip folder https://github.com/justinkeatingdev/LabSignup/archive/refs/heads/main.zip
 2. Extract zip 

@@ -81,15 +81,6 @@ namespace LabSignup
 
             }
 
-            using (ExcelPackage npackage = new ExcelPackage(new FileInfo(signeeList)))
-            {
-                ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
-                var nsheet = npackage.Workbook.Worksheets["Sheet1"];
-                var signees = new LabSignup().GetList<SigneeInfo>(nsheet);
-                allSignee = signees;
-
-            }
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -124,30 +115,128 @@ namespace LabSignup
 
         private void button5_Click(object sender, EventArgs e)
         {
-            string labDay = "";
-            string labStart = "";
-            string labEnd = "";
 
-            var labData = allLabs.AsQueryable().Where(l => l.LabName.ToLower().Contains(comboBox4.Text.Split('-').LastOrDefault().Trim().ToLower())).FirstOrDefault();
-            if (labData != null)
+            if (dataGridView1.Rows.Count - 1 > 0)
             {
-                labDay = labData.LabDay;
-                labStart = labData.LabStart;
-                labEnd = labData.LabEnd;
+
+
+                string labDay = "";
+                string labStart = "";
+                string labEnd = "";
+
+                var labData = allLabs.AsQueryable().Where(l => l.LabName.ToLower().Contains(comboBox4.Text.Split('-').LastOrDefault().Trim().ToLower())).FirstOrDefault();
+                if (labData != null)
+                {
+                    labDay = labData.LabDay;
+                    labStart = labData.LabStart;
+                    labEnd = labData.LabEnd;
+                }
+
+                //right here is needed logic to get datagridview data and form it to be a facilitator entry then need to send that to the facilitator signinsheet
+                var facilNames = "";
+                var facilTitles = "";
+
+                var facilDataRows = dataGridView1.Rows.Count - 1;
+                for (int i = 0; i <= facilDataRows - 1; i++)
+                {
+                    //dataGridView2.Rows[i].Cells[0].Value == null ? "" : dataGridView1.Rows[i].Cells[0].Value.ToString();
+                    var ffirstname = dataGridView1.Rows[i].Cells[0].Value == null ? "" : dataGridView1.Rows[i].Cells[0].Value.ToString();
+                    var flastname = dataGridView1.Rows[i].Cells[1].Value == null ? "" : " " + dataGridView1.Rows[i].Cells[1].Value.ToString();
+                    facilNames += ffirstname + flastname;
+
+                    if (i != facilDataRows - 1)
+                    {
+                        facilNames += ",";
+                    }
+
+                    facilTitles += dataGridView1.Rows[i].Cells[2].Value == null ? "" : dataGridView1.Rows[i].Cells[2].Value.ToString(); ;
+
+                    if(dataGridView1.Rows[i].Cells[2].Value != null)
+                    {
+                        if (i != facilDataRows - 1)
+                        {
+                            facilTitles += ",";
+                        }
+                    }
+                    
+                }
+
+                var facilLearnerColumns = dataGridView2.ColumnCount;
+                var allTitleCount = allTitles.Count();
+                var learnerTitles = "";
+
+                foreach (DataGridViewColumn item in dataGridView2.Columns)
+                {
+                    var columnNumber = item.Index;
+
+                    int titleTotalNumber = dataGridView2.Rows[0].Cells[columnNumber].Value == null ? 0 : int.Parse(dataGridView2.Rows[0].Cells[columnNumber].Value.ToString());
+
+                    if (titleTotalNumber != 0)
+                    {
+                        learnerTitles += item.Name + "=" + titleTotalNumber + ",";
+
+                    }  
+                }
+
+                List<string> facNames = facilNames.Split(',').ToList();
+                int facCount = facNames.Count();
+
+                if(learnerTitles.Count() > 1)
+                {
+                    learnerTitles = learnerTitles.Remove(learnerTitles.LastIndexOf(','));
+                }
+
+                double facTotalLabHoursCalculated = 0;
+                if (labData != null)
+                {
+                    var facLabHours = DateTime.Parse(labEnd) - DateTime.Parse(labStart);
+                    var totalLabMinutes = facLabHours.TotalMinutes;
+                    facTotalLabHoursCalculated = facCount * (totalLabMinutes / 60);
+                }
+                
+
+                var facilitator = new FacilitatorsInfo
+                { FacilitatorsNames = facilNames, FacilitatorsTitles = facilTitles, LabName = this.comboBox4.Text, LabDay = labDay.Replace("12:00:00 AM", ""), LabStart = labStart, LabEnd = labEnd, LabHours = (DateTime.Parse(labEnd) - DateTime.Parse(labStart)).ToString(), LearnerTitleswCount = learnerTitles, TotalFacilitators = facCount, TotalFacilitatorsHours = facTotalLabHoursCalculated };
+                currentFacilitator.Add(facilitator);
+
+                ExportFacilitators();
             }
 
-            //right here is needed logic to get datagridview data and form it to be a facilitator entry then need to send that to the facilitator signinsheet
-
-            var facilitator = new FacilitatorsInfo
-            { Names = this.textBox1.Text, Titles = this.comboBox2.Text, LabName = this.comboBox1.Text, LabDay = labDay.Replace("12:00:00 AM", ""), LabStart = labStart, LabEnd = labEnd, LabHours = (DateTime.Parse(labEnd) - DateTime.Parse(labStart)).ToString() };
-            currentFacilitator.Add(facilitator);
-
-            ExportFacilitators();
+            this.dataGridView1.Rows.Clear();
+            this.dataGridView2.Rows.Clear();
+            this.comboBox4.Text = "Select a Lab";
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+
+            //get learner signins from sheet
+            using (ExcelPackage npackage = new ExcelPackage(new FileInfo(signeeList)))
+            {
+                ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+                var nsheet = npackage.Workbook.Worksheets["Sheet1"];
+                if (nsheet.Cells[1, 1].Count() != 0)
+                {
+                    var signees = new LabSignup().GetList<SigneeInfo>(nsheet);
+                    allSignee = signees;
+                }
+
+
+            }
+
+            //get facilitators from sheet
+            using (ExcelPackage npackage = new ExcelPackage(new FileInfo(FacilitatorsList)))
+            {
+                ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+                var nsheet = npackage.Workbook.Worksheets["Sheet1"];
+                if (nsheet.Cells[1, 1].Count() !=0)
+                {
+                    var facilitators = new LabSignup().GetList<FacilitatorsInfo>(nsheet);
+                    allFacilitators = facilitators;
+                }
+
+            }
 
             string newExcelFile = execPath + $"/ExcelFiles/LabsData-{DateTime.Now.Month + "-" +  DateTime.Now.Day + "-" + DateTime.Now.Year}.xlsx";
             newExcelFile = newExcelFile.Replace(" ", "-");
@@ -251,10 +340,8 @@ namespace LabSignup
             {
                 ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
                 var sheet = package.Workbook.Worksheets["Sheet1"];
-                var titlesString = string.Join(",", allTitlesStrings);
 
-                sheet.Cells[1, 1].LoadFromText($"Facilitator Names,Facilitator Titles,Course Name,{titlesString},Total Facilitators,Total Facilitators Hours");
-
+                sheet.Cells[1, 1].LoadFromText($"FacilitatorsNames,FacilitatorsTitles,LabName,LabDay,LabStart,LabEnd,LabHours,LearnerTitleswCount,TotalFacilitators,TotalFacilitatorsHours");
 
                 var lastRow = sheet.Dimension.End.Row;
 
@@ -264,14 +351,6 @@ namespace LabSignup
 
                 currentFacilitator.Clear();
 
-                //using (ExcelPackage npackage = new ExcelPackage(new FileInfo(FacilitatorsList)))
-                //{
-                //    ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
-                //    var nsheet = npackage.Workbook.Worksheets["Sheet1"];
-                //    var facilitators = new LabSignup().GetList<SigneeInfo>(nsheet);
-                //    allFacilitators = facilitators;
-
-                //}
             }
         }
 
@@ -282,6 +361,9 @@ namespace LabSignup
                 ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
                 var sheet = package.Workbook.Worksheets["Sheet1"];
 
+                sheet.Cells[1, 1].LoadFromText($"FirstName,LastName,Title,LabName,LabDay,LabStart,LabEnd,LabSignInTime,LabHours");
+
+
                 var lastRow = sheet.Dimension.End.Row;
 
                 sheet.Cells[lastRow+1, 1].LoadFromCollection(currentSignee, false);
@@ -290,14 +372,6 @@ namespace LabSignup
 
                 currentSignee.Clear();
 
-                using (ExcelPackage npackage = new ExcelPackage(new FileInfo(signeeList)))
-                {
-                    ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
-                    var nsheet = npackage.Workbook.Worksheets["Sheet1"];
-                    var signees = new LabSignup().GetList<SigneeInfo>(nsheet);
-                    allSignee = signees;
-
-                }
             }
         }
 

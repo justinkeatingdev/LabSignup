@@ -45,6 +45,7 @@ namespace LabSignup
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -57,7 +58,6 @@ namespace LabSignup
             this.panel2 = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -164,6 +164,15 @@ namespace LabSignup
             this.panel1.Size = new System.Drawing.Size(720, 432);
             this.panel1.TabIndex = 12;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(300, 224);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(151, 13);
+            this.label5.TabIndex = 24;
+            this.label5.Text = "Enter Number of Learner Titles";
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -188,9 +197,9 @@ namespace LabSignup
             this.FirstName,
             this.LastName,
             this.Title});
-            this.dataGridView1.Location = new System.Drawing.Point(201, 22);
+            this.dataGridView1.Location = new System.Drawing.Point(169, 22);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(346, 130);
+            this.dataGridView1.Size = new System.Drawing.Size(345, 130);
             this.dataGridView1.TabIndex = 21;
             // 
             // FirstName
@@ -270,15 +279,6 @@ namespace LabSignup
             this.button4.Text = "Learner Login";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(300, 224);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(151, 13);
-            this.label5.TabIndex = 24;
-            this.label5.Text = "Enter Number of Learner Titles";
             // 
             // LabSignup
             // 

@@ -60,14 +60,16 @@ namespace LabSignup
 
     public class FacilitatorsInfo
     {
-        public string Names { get; set; }
-        public string Titles { get; set; }
-        public List<TitleInfo> SigneeTitleCounts { get; set;}
+        public string FacilitatorsNames { get; set; }
+        public string FacilitatorsTitles { get; set; }
         public string LabName { get; set; }
         public string LabDay { get; set; }
         public string LabStart { get; set; }
         public string LabEnd { get; set; }
         public string LabHours { get; set; }
+        public string LearnerTitleswCount { get; set; }
+        public int TotalFacilitators { get; set; }
+        public double TotalFacilitatorsHours { get; set; }
     }
 
 

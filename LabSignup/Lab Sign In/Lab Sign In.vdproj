@@ -21,6 +21,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_332261F84FBF4E76B018B8794B33B725"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_456286E1EB214FB28F9E320A3125A0F3"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -269,6 +275,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_332261F84FBF4E76B018B8794B33B725"
+            {
+            "SourcePath" = "8:..\\LabSignup\\bin\\Debug\\ExcelFiles\\FacilitatorsSignInSheet.xlsx"
+            "TargetName" = "8:FacilitatorsSignInSheet.xlsx"
+            "Tag" = "8:"
+            "Folder" = "8:_8F397BECC74A467DBC8C43C084E8939F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_456286E1EB214FB28F9E320A3125A0F3"
@@ -573,15 +599,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Lab Sign In"
-        "ProductCode" = "8:{91627A80-AD19-42BD-8367-600036BA0D16}"
-        "PackageCode" = "8:{35B1FA22-9E03-45ED-BE10-EEF387EF49B0}"
+        "ProductCode" = "8:{DB9B3ED7-82CC-4616-9086-2001558CE844}"
+        "PackageCode" = "8:{5930DFA2-E010-4A75-9344-A7AF69A5112B}"
         "UpgradeCode" = "8:{60EBD9AF-0ACB-4E8B-B970-F5407B83A4BC}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.15"
+        "ProductVersion" = "8:1.0.20"
         "Manufacturer" = "8:Justin Keating"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

@@ -52,5 +52,23 @@ namespace LabSignup
         public string LabHours { get; set; }
     }
 
+    public class TitleInfo
+    {
+        public string Title { get; set; }
+        public int Count { get; set; }
+    }
+
+    public class FacilitatorsInfo
+    {
+        public string Names { get; set; }
+        public string Titles { get; set; }
+        public List<TitleInfo> SigneeTitleCounts { get; set;}
+        public string LabName { get; set; }
+        public string LabDay { get; set; }
+        public string LabStart { get; set; }
+        public string LabEnd { get; set; }
+        public string LabHours { get; set; }
+    }
+
 
 }

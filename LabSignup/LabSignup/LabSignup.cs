@@ -20,9 +20,12 @@ namespace LabSignup
         public static List<SigneeTitles> allTitles = new List<SigneeTitles>();
         public static List<string> allTitlesStrings = new List<string>();
         public static List<SigneeInfo> allSignee = new List<SigneeInfo>();
+        public static List<FacilitatorsInfo> allFacilitators = new List<FacilitatorsInfo>();
         public static List<SigneeInfo> currentSignee = new List<SigneeInfo>();
+        public static List<FacilitatorsInfo> currentFacilitator = new List<FacilitatorsInfo>();
         public static string execPath = Path.GetDirectoryName(Application.ExecutablePath);
         public static string signeeList = execPath + $"/ExcelFiles/SignInSheet.xlsx";
+        public static string FacilitatorsList = execPath + $"/ExcelFiles/FacilitatorsSignInSheet.xlsx";
 
 
         public LabSignup()
@@ -71,6 +74,7 @@ namespace LabSignup
                     this.comboBox2.Items.Add($"{title.Title}");
                     allTitlesStrings.Add(title.Title);
                     this.Title.Items.Add($"{title.Title}");
+                    this.dataGridView2.Columns.Add(title.Title, title.Title);
                 }
                 this.comboBox2.Text = "Select Your Title";
 
@@ -115,6 +119,30 @@ namespace LabSignup
             this.textBox2.Clear();
             this.comboBox1.Text = "Select a Lab";
             this.comboBox2.Text = "Select Your Title";
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            string labDay = "";
+            string labStart = "";
+            string labEnd = "";
+
+            var labData = allLabs.AsQueryable().Where(l => l.LabName.ToLower().Contains(comboBox4.Text.Split('-').LastOrDefault().Trim().ToLower())).FirstOrDefault();
+            if (labData != null)
+            {
+                labDay = labData.LabDay;
+                labStart = labData.LabStart;
+                labEnd = labData.LabEnd;
+            }
+
+            //right here is needed logic to get datagridview data and form it to be a facilitator entry then need to send that to the facilitator signinsheet
+
+            var facilitator = new FacilitatorsInfo
+            { Names = this.textBox1.Text, Titles = this.comboBox2.Text, LabName = this.comboBox1.Text, LabDay = labDay.Replace("12:00:00 AM", ""), LabStart = labStart, LabEnd = labEnd, LabHours = (DateTime.Parse(labEnd) - DateTime.Parse(labStart)).ToString() };
+            currentFacilitator.Add(facilitator);
+
+            ExportFacilitators();
 
         }
 
@@ -213,6 +241,37 @@ namespace LabSignup
                 }
 
                 pck.SaveAs(new FileInfo(file));
+            }
+        }
+
+        private void ExportFacilitators()
+        {
+
+            using (ExcelPackage package = new ExcelPackage(new FileInfo(FacilitatorsList)))
+            {
+                ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+                var sheet = package.Workbook.Worksheets["Sheet1"];
+                var titlesString = string.Join(",", allTitlesStrings);
+
+                sheet.Cells[1, 1].LoadFromText($"Facilitator Names,Facilitator Titles,Course Name,{titlesString},Total Facilitators,Total Facilitators Hours");
+
+
+                var lastRow = sheet.Dimension.End.Row;
+
+                sheet.Cells[lastRow + 1, 1].LoadFromCollection(currentFacilitator, false);
+
+                package.Save();
+
+                currentFacilitator.Clear();
+
+                //using (ExcelPackage npackage = new ExcelPackage(new FileInfo(FacilitatorsList)))
+                //{
+                //    ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+                //    var nsheet = npackage.Workbook.Worksheets["Sheet1"];
+                //    var facilitators = new LabSignup().GetList<SigneeInfo>(nsheet);
+                //    allFacilitators = facilitators;
+
+                //}
             }
         }
 

@@ -2,6 +2,13 @@
 
 How to use the app
 
+IF YOU HAVE PREVIOUSLY HAD THIS APP YOU NEED TO REMOVE IT FROM YOUR COMPUTER FIRST
+1. Go to Control Panel
+2. Go to Uninstall Programs
+3. Right click on "Lab Sign In" and uninstall
+
+
+
 1. Download the zip folder https://github.com/justinkeatingdev/LabSignup/archive/refs/heads/main.zip
 2. Extract zip 
 3. Go to "LabSignup-main\LabSignup\Lab Sign In\Debug" in the extracted zip folder and run "setup.exe" AS ADMINISTRATOR to download the application 

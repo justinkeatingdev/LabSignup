@@ -139,7 +139,7 @@ namespace LabSignup
                 var facilDataRows = dataGridView1.Rows.Count - 1;
                 for (int i = 0; i <= facilDataRows - 1; i++)
                 {
-                    //dataGridView2.Rows[i].Cells[0].Value == null ? "" : dataGridView1.Rows[i].Cells[0].Value.ToString();
+
                     var ffirstname = dataGridView1.Rows[i].Cells[0].Value == null ? "" : dataGridView1.Rows[i].Cells[0].Value.ToString();
                     var flastname = dataGridView1.Rows[i].Cells[1].Value == null ? "" : " " + dataGridView1.Rows[i].Cells[1].Value.ToString();
                     facilNames += ffirstname + flastname;
@@ -262,6 +262,10 @@ namespace LabSignup
                 string tLearnersRowAddress = "";
                 int tLearnerHoursColumn = -1;
                 string tLearnerHoursColumnAddress = "";
+                //int tFacilitatorsColumn = -1;
+                //string tFacilitatorsColumnAddress = "";
+                //int tFacilitatorsHoursColumn = -1;
+                //string tFacilitatorsHoursColumnAddress = "";
                 string firstTitleAddress = "";
 
                 string cellRange = rowStart.ToString() + ":" + rowEnd.ToString();
@@ -298,6 +302,76 @@ namespace LabSignup
                     
                 }
 
+                foreach (var f in allFacilitators)
+                {
+                    int cellRow = -1;
+                    int cellColumn = -1;
+
+                    foreach (var worksheetCell in sheet.Cells)
+                    {
+                        if (worksheetCell.Value.ToString() == f.LabName)
+                        {
+                            cellRow = worksheetCell.EntireRow.StartRow;
+                        }
+                    }
+
+                    List<string> learnerTitleswcount = f.LearnerTitleswCount.Split(',').ToList();
+
+                    foreach (var titlewcount in learnerTitleswcount)
+                    {
+                        if (!string.IsNullOrEmpty(titlewcount))
+                        {
+                            var title = titlewcount.Split('=').FirstOrDefault();
+                            int count = int.Parse(titlewcount.Split('=').LastOrDefault());
+
+                            foreach (var worksheetCell in sheet.Cells)
+                            {
+                                if (worksheetCell.Value.ToString() == title)
+                                {
+                                    cellColumn = worksheetCell.EntireColumn.StartColumn;
+                                }
+
+                            }
+
+                            if (cellRow != -1 && cellColumn != -1)
+                            {
+                                var cellValue = string.IsNullOrEmpty(sheet.Cells[cellRow, cellColumn].Text) ? 0 : int.Parse(sheet.Cells[cellRow, cellColumn].Text.ToString());
+                                cellValue += count;
+
+                                sheet.Cells[cellRow, cellColumn].LoadFromText($"{cellValue}");
+                            }
+                        }
+
+                    }
+
+                    foreach (var worksheetCell in sheet.Cells)
+                    {
+                        if (worksheetCell.Value.ToString() == "Total Facilitators")
+                        {
+                            var tFacilitatorsColumn = worksheetCell.EntireColumn.StartColumn;
+                            var tFacilitatorsColumnAddress = ExcelCellAddress.GetColumnLetter(tFacilitatorsColumn);
+
+                            var cellValue = string.IsNullOrEmpty(sheet.Cells[cellRow, tFacilitatorsColumn].Text) ? 0 : int.Parse(sheet.Cells[cellRow, tFacilitatorsColumn].Text.ToString());
+                            cellValue += f.TotalFacilitators;
+
+                            sheet.Cells[cellRow, tFacilitatorsColumn].LoadFromText($"{cellValue}");
+
+                        }
+
+                        if (worksheetCell.Value.ToString() == "Total Facilitators Hours")
+                        {
+                            var tFacilitatorsHoursColumn = worksheetCell.EntireColumn.StartColumn;
+                            var tFacilitatorsHoursColumnAddress = ExcelCellAddress.GetColumnLetter(tFacilitatorsHoursColumn);
+
+                            double cellValue = string.IsNullOrEmpty(sheet.Cells[cellRow, tFacilitatorsHoursColumn].Text) ? 0 : double.Parse(sheet.Cells[cellRow, tFacilitatorsHoursColumn].Text.ToString());
+                            cellValue += f.TotalFacilitatorsHours;
+
+                            sheet.Cells[cellRow, tFacilitatorsHoursColumn].LoadFromText($"{cellValue}");
+                        }
+                    }
+
+                }
+
                 foreach (var worksheetCell in sheet.Cells)
                 {
                     if (worksheetCell.Value.ToString() == "Total Learners")
@@ -318,6 +392,7 @@ namespace LabSignup
                         tLearnerHoursColumn = worksheetCell.EntireColumn.StartColumn;
                         tLearnerHoursColumnAddress = ExcelCellAddress.GetColumnLetter(tLearnerHoursColumn);
                     }
+
                 }
 
                 for (int i = 0; i < labNames.Count(); i++)

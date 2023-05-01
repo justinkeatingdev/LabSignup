@@ -37,8 +37,14 @@ namespace LabSignup
         private void LabSignup_Load(object sender, EventArgs e)
         {
 
+            //int w = Screen.PrimaryScreen.Bounds.Width;
+            //int h = Screen.PrimaryScreen.Bounds.Height;
+            //this.Location = new Point(0, 0);
+            //this.Size = new Size(w, h);
+
             this.panel1.Visible = false;
-            
+            this.panel2.Visible = false;
+
             string file = execPath + "/ExcelFiles/LabDetails.xlsx";
 
             using (ExcelPackage package = new ExcelPackage(new FileInfo(file)))
@@ -110,6 +116,7 @@ namespace LabSignup
             this.textBox2.Clear();
             this.comboBox1.Text = "Select a Lab";
             this.comboBox2.Text = "Select Your Title";
+            this.panel2.Visible = false;
 
         }
 
@@ -205,6 +212,7 @@ namespace LabSignup
             this.dataGridView1.Rows.Clear();
             this.dataGridView2.Rows.Clear();
             this.comboBox4.Text = "Select a Lab";
+            this.panel1.Visible = false;
 
         }
 

@@ -91,6 +91,27 @@ namespace LabSignup
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (textBox1.Text == string.Empty)
+            {
+                MessageBox.Show("Please enter your first name");
+                return;
+            }
+            if (textBox2.Text == string.Empty)
+            {
+                MessageBox.Show("Please enter your last name");
+                return;
+            }
+            if (comboBox1.Text == "Select a Lab")
+            {
+                MessageBox.Show("Please select a lab");
+                return;
+            }
+            if (comboBox2.Text == "Select Your Title")
+            {
+                MessageBox.Show("Please select your title");
+                return;
+            }
+
             if (!string.IsNullOrEmpty(this.textBox1.Text))
             {
 
@@ -122,6 +143,12 @@ namespace LabSignup
 
         private void button5_Click(object sender, EventArgs e)
         {
+
+            if (comboBox4.Text == "Select a Lab")
+            {
+                MessageBox.Show("Please select a lab");
+                return;
+            }
 
             if (dataGridView1.Rows.Count - 1 > 0)
             {
@@ -165,7 +192,23 @@ namespace LabSignup
                             facilTitles += ",";
                         }
                     }
-                    
+
+                    if (ffirstname == String.Empty)
+                    {
+                        MessageBox.Show("Please enter first name for facilitator " + (i+1));
+                        return;
+                    }
+                    if (flastname == String.Empty)
+                    {
+                        MessageBox.Show("Please enter last name for facilitator " + (i + 1));
+                        return;
+                    }
+                    if (dataGridView1.Rows[i].Cells[2].Value == null)
+                    {
+                        MessageBox.Show("Please select a title for facilitator " + (i + 1));
+                        return;
+                    }
+
                 }
 
                 var facilLearnerColumns = dataGridView2.ColumnCount;
@@ -207,6 +250,11 @@ namespace LabSignup
                 currentFacilitator.Add(facilitator);
 
                 ExportFacilitators();
+            }
+            else
+            {
+                MessageBox.Show("Please fill in first name, last name, and title");
+                return;
             }
 
             this.dataGridView1.Rows.Clear();

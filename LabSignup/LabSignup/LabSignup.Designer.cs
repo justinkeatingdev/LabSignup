@@ -132,6 +132,7 @@ namespace LabSignup
             // 
             // button2
             // 
+            this.button2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Location = new System.Drawing.Point(655, 549);
             this.button2.Name = "button2";
@@ -162,6 +163,8 @@ namespace LabSignup
             // 
             // panel1
             // 
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.dataGridView2);
@@ -171,7 +174,7 @@ namespace LabSignup
             this.panel1.Controls.Add(this.comboBox4);
             this.panel1.Location = new System.Drawing.Point(435, 55);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(982, 456);
+            this.panel1.Size = new System.Drawing.Size(987, 456);
             this.panel1.TabIndex = 12;
             // 
             // label5
@@ -261,6 +264,7 @@ namespace LabSignup
             // 
             // panel2
             // 
+            this.panel2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel2.Controls.Add(this.textBox1);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.label6);
@@ -272,11 +276,12 @@ namespace LabSignup
             this.panel2.Controls.Add(this.comboBox1);
             this.panel2.Location = new System.Drawing.Point(80, 76);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(265, 384);
+            this.panel2.Size = new System.Drawing.Size(270, 384);
             this.panel2.TabIndex = 13;
             // 
             // button3
             // 
+            this.button3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.Location = new System.Drawing.Point(833, 12);
             this.button3.Name = "button3";
@@ -288,6 +293,7 @@ namespace LabSignup
             // 
             // button4
             // 
+            this.button4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.Location = new System.Drawing.Point(139, 9);
             this.button4.Name = "button4";
@@ -302,7 +308,7 @@ namespace LabSignup
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
-            this.ClientSize = new System.Drawing.Size(1449, 590);
+            this.ClientSize = new System.Drawing.Size(1478, 601);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.panel2);

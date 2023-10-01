@@ -600,7 +600,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:VANEOHS Simulator Center Sign In"
         "ProductCode" = "8:{8A16A5C8-C51B-44ED-91B3-734FD9E68ACD}"
-        "PackageCode" = "8:{A7ADCBDE-CF96-46C6-9610-3DC2F8EB9964}"
+        "PackageCode" = "8:{61195E27-CCF7-495F-A89C-63A488117E5B}"
         "UpgradeCode" = "8:{60EBD9AF-0ACB-4E8B-B970-F5407B83A4BC}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -722,7 +722,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_66854273DCDB42738F176CB0D80646B1"
             {
-            "Name" = "8:Lab Sign In"
+            "Name" = "8:VANEOHS Simulation Center Sign In"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
@@ -736,7 +736,7 @@
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_81869465BD0B4F1ABB1716EEC24E46C0"
             {
-            "Name" = "8:Lab Sign In"
+            "Name" = "8:VANEOHS Simulation Center Sign In"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"

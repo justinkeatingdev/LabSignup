@@ -60,7 +60,10 @@ namespace LabSignup
                 {
                     string labDay = lab.LabDay.Replace("12:00:00 AM", "");
                     this.comboBox1.Items.Add($"{labDay}- {lab.LabName}");
-                    labNames.Add($"{labDay}- {lab.LabName}");
+                    if (!labNames.Contains($"{labDay}- {lab.LabName}"))
+                    {
+                        labNames.Add($"{labDay}- {lab.LabName}");
+                    }
                     this.comboBox4.Items.Add($"{labDay}- {lab.LabName}");
                 }
                 this.comboBox1.Text = "Select a Lab";

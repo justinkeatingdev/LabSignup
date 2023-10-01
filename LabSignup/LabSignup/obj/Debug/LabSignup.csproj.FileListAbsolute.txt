@@ -17,6 +17,7 @@ D:\CODING\LabSignup\LabSignup\LabSignup\bin\Debug\EPPlus.System.Drawing.dll
 D:\CODING\LabSignup\LabSignup\LabSignup\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
 D:\CODING\LabSignup\LabSignup\LabSignup\bin\Debug\EPPlus.xml
 D:\CODING\LabSignup\LabSignup\LabSignup\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+D:\CODING\LabSignup\LabSignup\LabSignup\obj\Debug\LabSignup.Agreement.resources
 D:\CODING\LabSignup\LabSignup\LabSignup\obj\Debug\LabSignup.LabSignup.resources
 D:\CODING\LabSignup\LabSignup\LabSignup\obj\Debug\LabSignup.Properties.Resources.resources
 D:\CODING\LabSignup\LabSignup\LabSignup\obj\Debug\LabSignup.csproj.GenerateResource.cache
@@ -24,5 +25,3 @@ D:\CODING\LabSignup\LabSignup\LabSignup\obj\Debug\LabSignup.csproj.CoreCompileIn
 D:\CODING\LabSignup\LabSignup\LabSignup\obj\Debug\LabSignup.csproj.CopyComplete
 D:\CODING\LabSignup\LabSignup\LabSignup\obj\Debug\LabSignup.exe
 D:\CODING\LabSignup\LabSignup\LabSignup\obj\Debug\LabSignup.pdb
-D:\CODING\LabSignup\LabSignup\LabSignup\obj\Debug\LabSignup.csproj.AssemblyReference.cache
-D:\CODING\LabSignup\LabSignup\LabSignup\obj\Debug\LabSignup.Agreement.resources

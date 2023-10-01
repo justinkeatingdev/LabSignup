@@ -68,9 +68,9 @@ namespace LabSignup
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(13, 34);
+            this.textBox1.Location = new System.Drawing.Point(0, 34);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(230, 27);
+            this.textBox1.Size = new System.Drawing.Size(267, 27);
             this.textBox1.TabIndex = 0;
             // 
             // label1
@@ -96,18 +96,18 @@ namespace LabSignup
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(13, 95);
+            this.textBox2.Location = new System.Drawing.Point(0, 95);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(230, 27);
+            this.textBox2.Size = new System.Drawing.Size(267, 27);
             this.textBox2.TabIndex = 2;
             // 
             // comboBox1
             // 
             this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(13, 158);
+            this.comboBox1.Location = new System.Drawing.Point(0, 158);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(230, 28);
+            this.comboBox1.Size = new System.Drawing.Size(267, 28);
             this.comboBox1.TabIndex = 4;
             // 
             // label3
@@ -147,9 +147,9 @@ namespace LabSignup
             // 
             this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(13, 218);
+            this.comboBox2.Location = new System.Drawing.Point(0, 218);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(230, 28);
+            this.comboBox2.Size = new System.Drawing.Size(270, 28);
             this.comboBox2.TabIndex = 10;
             // 
             // label6

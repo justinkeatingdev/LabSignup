@@ -20,7 +20,8 @@ namespace LabSignup
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LabSignup());
+            // decides which from runs
+            Application.Run(new Agreement());
         }
 
 

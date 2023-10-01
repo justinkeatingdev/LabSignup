@@ -77,6 +77,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Agreement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Agreement.Designer.cs">
+      <DependentUpon>Agreement.cs</DependentUpon>
+    </Compile>
     <Compile Include="LabSignup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +91,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Agreement.resx">
+      <DependentUpon>Agreement.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LabSignup.resx">
       <DependentUpon>LabSignup.cs</DependentUpon>
     </EmbeddedResource>

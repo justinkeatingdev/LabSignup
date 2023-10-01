@@ -42,6 +42,8 @@ namespace LabSignup
             //this.Location = new Point(0, 0);
             //this.Size = new Size(w, h);
 
+            this.Hide();
+            this.button2.Hide();
             this.panel1.Visible = false;
             this.panel2.Visible = false;
 
@@ -138,6 +140,9 @@ namespace LabSignup
             this.comboBox1.Text = "Select a Lab";
             this.comboBox2.Text = "Select Your Title";
             this.panel2.Visible = false;
+            Agreement f2 = new Agreement();
+            this.Hide();
+            f2.Show();
 
         }
 
@@ -261,6 +266,9 @@ namespace LabSignup
             this.dataGridView2.Rows.Clear();
             this.comboBox4.Text = "Select a Lab";
             this.panel1.Visible = false;
+            Agreement f2 = new Agreement();
+            this.Hide();
+            f2.Show();
 
         }
 
@@ -542,5 +550,12 @@ namespace LabSignup
             this.panel1.Visible = false;
         }
 
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            if (this.textBox3.Text == "JustinIsTheBest05142022")
+            {
+                this.button2.Show();
+            }
+        }
     }
 }

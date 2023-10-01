@@ -552,7 +552,7 @@ namespace LabSignup
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            if (this.textBox3.Text == "JustinIsTheBest05142022")
+            if (this.textBox3.Text == "CleVAsim1")
             {
                 this.button2.Show();
             }

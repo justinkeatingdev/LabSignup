@@ -5,7 +5,7 @@ How to use the app
 IF YOU HAVE PREVIOUSLY HAD THIS APP YOU NEED TO REMOVE IT FROM YOUR COMPUTER FIRST
 1. Go to Control Panel
 2. Go to Uninstall Programs
-3. Right click on "Lab Sign In" and uninstall
+3. Right click on "VANEOHS Simulation Center Sign In" and uninstall
 4. Here is link for better directions https://support.microsoft.com/en-us/windows/uninstall-or-remove-apps-and-programs-in-windows-4b55f974-2cc6-2d2b-d092-5905080eaf98#:~:text=In%20search%20on%20the%20taskbar,select%20Uninstall%20or%20Uninstall%2FChange.
 
 ------

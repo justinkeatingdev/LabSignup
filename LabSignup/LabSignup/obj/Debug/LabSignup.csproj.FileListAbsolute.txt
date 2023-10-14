@@ -25,3 +25,4 @@ D:\CODING\LabSignup\LabSignup\LabSignup\obj\Debug\LabSignup.csproj.CoreCompileIn
 D:\CODING\LabSignup\LabSignup\LabSignup\obj\Debug\LabSignup.csproj.CopyComplete
 D:\CODING\LabSignup\LabSignup\LabSignup\obj\Debug\LabSignup.exe
 D:\CODING\LabSignup\LabSignup\LabSignup\obj\Debug\LabSignup.pdb
+D:\CODING\LabSignup\LabSignup\LabSignup\obj\Debug\LabSignup.csproj.AssemblyReference.cache

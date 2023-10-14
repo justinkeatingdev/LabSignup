@@ -40,6 +40,7 @@ namespace LabSignup
             // 
             // button1
             // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(226, 421);
             this.button1.Name = "button1";
@@ -51,22 +52,24 @@ namespace LabSignup
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Red;
             this.label1.Location = new System.Drawing.Point(231, 21);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(133, 46);
+            this.label1.Size = new System.Drawing.Size(134, 46);
             this.label1.TabIndex = 2;
             this.label1.Text = "STOP";
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(56, 79);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(491, 50);
+            this.label2.Size = new System.Drawing.Size(492, 50);
             this.label2.TabIndex = 3;
             this.label2.Text = "Welcome and thank you for using our simulation center.\nYou must sign in prior to " +
     "using the Simulation Center.";
@@ -74,33 +77,36 @@ namespace LabSignup
             // 
             // label3
             // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(66, 328);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(142, 50);
+            this.label3.Size = new System.Drawing.Size(143, 50);
             this.label3.TabIndex = 4;
             this.label3.Text = "Learner Login\n(single learner)";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(253, 328);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(320, 50);
+            this.label4.Size = new System.Drawing.Size(321, 50);
             this.label4.TabIndex = 5;
             this.label4.Text = "Facilitator Login\n(Instructor leading the class course)";
             this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label5
             // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(84, 191);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(450, 100);
+            this.label5.Size = new System.Drawing.Size(451, 100);
             this.label5.TabIndex = 6;
             this.label5.Text = "If you are a single learner, you will select\nLearner Login on the next page.\nIf y" +
     "ou are a facilitator (class/course leader), you will\nselect Facilitator Login on" +
@@ -109,12 +115,13 @@ namespace LabSignup
             // 
             // label6
             // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Black;
             this.label6.Location = new System.Drawing.Point(210, 160);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(176, 31);
+            this.label6.Size = new System.Drawing.Size(177, 31);
             this.label6.TabIndex = 7;
             this.label6.Text = "Instructions:";
             // 
@@ -134,6 +141,7 @@ namespace LabSignup
             this.Name = "Agreement";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Acknowledge Agreement for VANEOHS Simulation Center Sign In";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Agreement_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

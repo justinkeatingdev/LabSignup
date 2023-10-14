@@ -42,6 +42,7 @@ namespace LabSignup
             //this.Location = new Point(0, 0);
             //this.Size = new Size(w, h);
 
+            this.WindowState = FormWindowState.Maximized;
             this.Hide();
             this.button2.Hide();
             this.panel1.Visible = false;
@@ -558,6 +559,10 @@ namespace LabSignup
             if (this.textBox3.Text == "CleVAsim1")
             {
                 this.button2.Show();
+            }
+            else
+            {
+                this.button2.Hide();
             }
         }
     }

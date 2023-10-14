@@ -59,10 +59,13 @@ namespace LabSignup
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox1
@@ -135,7 +138,7 @@ namespace LabSignup
             // 
             this.button2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(655, 549);
+            this.button2.Location = new System.Drawing.Point(113, 21);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(154, 33);
             this.button2.TabIndex = 7;
@@ -307,12 +310,32 @@ namespace LabSignup
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(554, 557);
+            this.textBox3.Location = new System.Drawing.Point(3, 34);
             this.textBox3.Name = "textBox3";
             this.textBox3.PasswordChar = '*';
             this.textBox3.Size = new System.Drawing.Size(95, 20);
             this.textBox3.TabIndex = 16;
             this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            // 
+            // panel3
+            // 
+            this.panel3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel3.Controls.Add(this.label7);
+            this.panel3.Controls.Add(this.textBox3);
+            this.panel3.Controls.Add(this.button2);
+            this.panel3.Location = new System.Drawing.Point(563, 532);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(337, 57);
+            this.panel3.TabIndex = 17;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(0, 18);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(101, 13);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "Facilitator Password";
             // 
             // LabSignup
             // 
@@ -320,12 +343,11 @@ namespace LabSignup
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1478, 601);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.button2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LabSignup";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -337,8 +359,9 @@ namespace LabSignup
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -369,6 +392,8 @@ namespace LabSignup
         private Label label4;
         private Label label5;
         private TextBox textBox3;
+        private Panel panel3;
+        private Label label7;
     }
 }
 

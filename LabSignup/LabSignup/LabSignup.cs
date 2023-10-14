@@ -306,7 +306,7 @@ namespace LabSignup
 
             }
 
-            string newExcelFile = execPath + $"/ExcelFiles/LabsData-{DateTime.Now.Month + "-" +  DateTime.Now.Day + "-" + DateTime.Now.Year + "-" + DateTime.Now.TimeOfDay}.xlsx";
+            string newExcelFile = execPath + $"/ExcelFiles/LabsData-{DateTime.Now.Month + "-" +  DateTime.Now.Day + "-" + DateTime.Now.Year}.xlsx";
             newExcelFile = newExcelFile.Replace(" ", "-");
             new LabSignup().Export(newExcelFile);
         }

@@ -289,6 +289,10 @@ namespace LabSignup
                     var signees = new LabSignup().GetList<SigneeInfo>(nsheet);
                     allSignee = signees;
                 }
+                else
+                {
+                    allSignee.Clear();
+                }
 
 
             }
@@ -302,6 +306,10 @@ namespace LabSignup
                 {
                     var facilitators = new LabSignup().GetList<FacilitatorsInfo>(nsheet);
                     allFacilitators = facilitators;
+                }
+                else
+                {
+                    allFacilitators.Clear();
                 }
 
             }

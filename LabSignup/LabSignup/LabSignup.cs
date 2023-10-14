@@ -21,8 +21,6 @@ namespace LabSignup
         public static List<string> allTitlesStrings = new List<string>();
         public static List<SigneeInfo> allSignee = new List<SigneeInfo>();
         public static List<FacilitatorsInfo> allFacilitators = new List<FacilitatorsInfo>();
-        public static List<SigneeInfo> allSigneeFromFile = new List<SigneeInfo>();
-        public static List<FacilitatorsInfo> allFacilitatorsFromFile = new List<FacilitatorsInfo>();
         public static List<SigneeInfo> currentSignee = new List<SigneeInfo>();
         public static List<FacilitatorsInfo> currentFacilitator = new List<FacilitatorsInfo>();
         public static string execPath = Path.GetDirectoryName(Application.ExecutablePath);
@@ -289,7 +287,7 @@ namespace LabSignup
                 if (nsheet.Cells[1, 1].Count() != 0)
                 {
                     var signees = new LabSignup().GetList<SigneeInfo>(nsheet);
-                    allSigneeFromFile = signees;
+                    allSignee = signees;
                 }
 
 
@@ -303,12 +301,12 @@ namespace LabSignup
                 if (nsheet.Cells[1, 1].Count() !=0)
                 {
                     var facilitators = new LabSignup().GetList<FacilitatorsInfo>(nsheet);
-                    allFacilitatorsFromFile = facilitators;
+                    allFacilitators = facilitators;
                 }
 
             }
 
-            string newExcelFile = execPath + $"/ExcelFiles/LabsData-{DateTime.Now.Month + "-" +  DateTime.Now.Day + "-" + DateTime.Now.Year}.xlsx";
+            string newExcelFile = execPath + $"/ExcelFiles/LabsData-{DateTime.Now.Month + "-" +  DateTime.Now.Day + "-" + DateTime.Now.Year + "-" + DateTime.Now.TimeOfDay}.xlsx";
             newExcelFile = newExcelFile.Replace(" ", "-");
             new LabSignup().Export(newExcelFile);
         }
@@ -345,7 +343,7 @@ namespace LabSignup
                     sheet.Cells[i+2, 1].LoadFromText($"{labNames[i]}");
                 }
 
-                foreach(var s in allSigneeFromFile)
+                foreach(var s in allSignee)
                 {
                     int cellRow = -1;
                     int cellColumn = -1;
@@ -372,7 +370,7 @@ namespace LabSignup
                     
                 }
 
-                foreach (var f in allFacilitatorsFromFile)
+                foreach (var f in allFacilitators)
                 {
                     int cellRow = -1;
                     int cellColumn = -1;
